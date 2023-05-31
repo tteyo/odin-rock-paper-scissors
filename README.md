@@ -25,6 +25,24 @@ computerSelection(){
 
 playerSelection will prompt and store inside a variable the action
 
-playRound(){
+playRound(computerSelection, playerSelection){
+    Conditions:
+    Same item draws
+    Rock beats Scissors
+    Scissors beats Paper
+    Paper beats Rock
     
+
+    check if both are the same else
+    if item check win else other player wins
+    return winner true for player, false for computer
+}
+
+game(){
+    computer wins
+    player wins
+    loop x5
+        prompt user input
+        get random computer choice
+        if play round player add +1 else add to computer
 }
