@@ -3,7 +3,16 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection,computerSelection){
-    return false;
+    if (playerSelection === computerSelection){
+        return 0;
+    }else if(playerSelection === "ROCK" && computerSelection === "SCISSORS"){
+        return 1;
+    }else if(playerSelection === "PAPER" && computerSelection === "ROCK"){
+        return 1;
+    }else if(playerSelection === "SCISSORS" && computerSelection === "PAPER"){
+        return 1;
+    }
+    return -1;
 }
 
 function game(){
@@ -12,18 +21,24 @@ function game(){
     let playerSelection,
         computerSelection;
 
-    for(let i = 0; i < 5; i++){
+    while(playerWins != 5 && computerWins != 5){
         playerSelection = prompt("Choose between: Rock, Paper, or Scissors").toUpperCase();
         computerSelection = getComputerChoice();
-        if(playRound(playerSelection, computerSelection)){
-            playerWins += 1;
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-        }else{
-            computerWins += 1;
-            console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-        }
-        if (playerWins === 5 || computerWins === 5){
-            break;
+        switch (playRound(playerSelection, computerSelection)){
+            case 1:
+                playerWins += 1;
+                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                break;
+            case -1:
+                computerWins += 1;
+                console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+                break;
+            case 0:
+                console.log(`Its a Tie! Try again`);
+                break;
+            default:
+                console.log("ReInput");
+                break;
         }
     }
 
