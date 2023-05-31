@@ -1,8 +1,17 @@
 function getComputerChoice(){
-    return "ROCK";
+    let decide = Math.floor(Math.random()*3);
+    switch (decide){
+        case 1:
+            return "ROCK";
+        case 2:
+            return "PAPER";
+        default:
+            return "SCISSORS";
+    }
 }
 
 function playRound(playerSelection,computerSelection){
+    //Issue when option is not one of the 3 it defaults to lose
     if (playerSelection === computerSelection){
         return 0;
     }else if(playerSelection === "ROCK" && computerSelection === "SCISSORS"){
@@ -22,6 +31,7 @@ function game(){
         computerSelection;
 
     while(playerWins != 5 && computerWins != 5){
+        //Null values for prompt results in an error interrupting the program because of toUpperCase
         playerSelection = prompt("Choose between: Rock, Paper, or Scissors").toUpperCase();
         computerSelection = getComputerChoice();
         switch (playRound(playerSelection, computerSelection)){
