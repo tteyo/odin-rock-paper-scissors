@@ -11,7 +11,6 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection,computerSelection){
-    //Issue when option is not one of the 3 it defaults to lose
     if (playerSelection === computerSelection){
         return 0;
     }else if(playerSelection === "ROCK" && computerSelection === "SCISSORS"){
@@ -26,15 +25,24 @@ function playRound(playerSelection,computerSelection){
 
 const buttons = document.querySelectorAll('button');
 const results = document.querySelector('p');
+const computer = document.querySelector('.computer');
+const human = document.querySelector('.human');
+let humanWins = 0;
+let computerWins = 0;
 
-buttons.forEach(button => {
-    button.addEventListener('click',function game(){
+buttons.forEach((button) => {
+    button.addEventListener('click',() => {
+        if(humanWins === 5 || computerWins === 5) return;
         computerSelection = getComputerChoice();
         switch (playRound(button.id, computerSelection)){
             case 1:
+                humanWins = humanWins + 1;
+                human.innerText = `Human: ${humanWins}`;
                 results.innerText = `You Win! ${button.id} beats ${computerSelection}`;
                 break;
             case -1:
+                computerWins += 1;
+                computer.innerText = `Computer: ${computerWins}`;
                 results.innerText = `You Lose! ${computerSelection} beats ${button.id}`;
                 break;
             case 0:
@@ -43,6 +51,6 @@ buttons.forEach(button => {
             default:
                 console.log("ReInput");
                 break;
-        }
+        };
     });
 });
