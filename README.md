@@ -38,11 +38,10 @@ playRound(computerSelection, playerSelection){
     return winner true for player, false for computer
 }
 
+on each button listen for click, onclick execute one game round and update winner
 game(){
-    computer wins
-    player wins
-    loop x5
-        prompt user input
-        get random computer choice
-        if play round player add +1 else add to computer
+    playerSelection = button.id
+    get random computer choice
+    if play round player add +1 else add to computer
 }
+

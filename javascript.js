@@ -24,34 +24,25 @@ function playRound(playerSelection,computerSelection){
     return -1;
 }
 
-function game(){
-    let playerWins = 0,
-        computerWins = 0;
-    let playerSelection,
-        computerSelection;
+const buttons = document.querySelectorAll('button');
+const results = document.querySelector('p');
 
-    while(playerWins != 5 && computerWins != 5){
-        //Null values for prompt results in an error interrupting the program because of toUpperCase
-        playerSelection = prompt("Choose between: Rock, Paper, or Scissors").toUpperCase();
+buttons.forEach(button => {
+    button.addEventListener('click',function game(){
         computerSelection = getComputerChoice();
-        switch (playRound(playerSelection, computerSelection)){
+        switch (playRound(button.id, computerSelection)){
             case 1:
-                playerWins += 1;
-                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                results.innerText = `You Win! ${button.id} beats ${computerSelection}`;
                 break;
             case -1:
-                computerWins += 1;
-                console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+                results.innerText = `You Lose! ${computerSelection} beats ${button.id}`;
                 break;
             case 0:
-                console.log(`Its a Tie! Try again`);
+                results.innerText = `Its a Tie! Try again`;
                 break;
             default:
                 console.log("ReInput");
                 break;
         }
-    }
-
-}
-
-game();
+    });
+});
